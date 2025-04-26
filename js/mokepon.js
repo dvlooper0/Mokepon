@@ -1,9 +1,35 @@
+<<<<<<< HEAD
+=======
+let sectionSeleccionarAtaque=document.getElementById('seleccionar-ataque')
+let botonMascotaJugador = document.getElementById('boton-mascota')
+let botonFuego=document.getElementById('boton-fuego')
+let botonAgua=document.getElementById('boton-agua')
+let botonTierra=document.getElementById('boton-tierra')
+let botonReiniciar=document.getElementById('boton-reiniciar')
+
+let sectionSeleccionarMascota=document.getElementById('seleccionar-mascota')
+let inputHipodoge=document.getElementById('hipodoge')
+let inputCapipepo=document.getElementById('capipepo')
+let inputRatigueya=document.getElementById('ratigueya')
+let spanMascotaJugador=document.getElementById('mascota-jugador')
+
+let spanMascotaEnemigo=document.getElementById('mascota-enemigo')
+
+let spanVidasJugador=document.getElementById('vidas-jugador')
+let spanVidasEnemigo=document.getElementById('vidas-enemigo')
+
+let sectionMensajes = document.getElementById('resulrado')
+let ataqueDelJugador = document.getElementById('ataque-del-jugador')
+let ataqueDelEnemigo = document.getElementById('ataque-del-enemigo')
+
+>>>>>>> c9e75e2f391569f24c84c383bb6e15979adb79ec
 let ataqueJugador
 let ataqueEnemigo
 let vidasJugador=3
 let vidasEnemigo=3
 
 function iniciarJuego(){
+<<<<<<< HEAD
 
     let sectionSeleccionarAtaque=document.getElementById('seleccionar-ataque')
     sectionSeleccionarAtaque.style.display='none'
@@ -19,11 +45,19 @@ function iniciarJuego(){
     botonTierra.addEventListener('click',ataqueTierra)
     
     let botonReiniciar=document.getElementById('boton-reiniciar')
+=======
+    sectionSeleccionarAtaque.style.display='none'
+    botonMascotaJugador.addEventListener('click',selecionarMascotaJugador)
+    botonFuego.addEventListener('click',ataqueFuego)
+    botonAgua.addEventListener('click',ataqueAgua)
+    botonTierra.addEventListener('click',ataqueTierra)
+>>>>>>> c9e75e2f391569f24c84c383bb6e15979adb79ec
     botonReiniciar.addEventListener('click',reiniciarJuego)
     botonReiniciar.style.display='none'
 }
 
 function selecionarMascotaJugador(){
+<<<<<<< HEAD
 
     let sectionSeleccionarAtaque=document.getElementById('seleccionar-ataque')
     sectionSeleccionarAtaque.style.display='block'
@@ -36,6 +70,11 @@ function selecionarMascotaJugador(){
     let inputRatigueya=document.getElementById('ratigueya')
     let spanMascotaJugador=document.getElementById('mascota-jugador')
 
+=======
+    sectionSeleccionarAtaque.style.display='flex'
+    sectionSeleccionarMascota.style.display='none'
+
+>>>>>>> c9e75e2f391569f24c84c383bb6e15979adb79ec
     if(inputHipodoge.checked)
         spanMascotaJugador.innerHTML='Hipodoge'
     else if(inputCapipepo.checked)
@@ -51,7 +90,10 @@ function selecionarMascotaJugador(){
 function seleccionarMascotaEnemigo(){
 
     let mascotaAleatorio=aleatorio(1,3)
+<<<<<<< HEAD
     let spanMascotaEnemigo=document.getElementById('mascota-enemigo')
+=======
+>>>>>>> c9e75e2f391569f24c84c383bb6e15979adb79ec
     
     if(mascotaAleatorio==1){
         spanMascotaEnemigo.innerHTML = 'Hipodoge'
@@ -99,9 +141,12 @@ function ataqueAleatorioEnemigo(){
 }
 
 function combate(){
+<<<<<<< HEAD
 
     let spanVidasJugador=document.getElementById('vidas-jugador')
     let spanVidasEnemigo=document.getElementById('vidas-enemigo')
+=======
+>>>>>>> c9e75e2f391569f24c84c383bb6e15979adb79ec
     
     if(ataqueJugador==ataqueEnemigo){
         crearMensaje("Empate 👽")
@@ -145,6 +190,7 @@ function revisarVidas(){
 
 function crearMensaje(resultado){
 
+<<<<<<< HEAD
     let sectionMensajes = document.getElementById('mensajes')
 
     let parrafo=document.createElement('p')
@@ -155,10 +201,24 @@ function crearMensaje(resultado){
 function crearMensajeFinal(resultadoFinal){
 
     let sectionMensajes = document.getElementById('mensajes')
+=======
+    let nuevoAtaqueDelJugador=document.createElement('p')
+    let nuevoAtaqueDelEnemigo=document.createElement('p')
+
+    
+    //let parrafo=document.createElement('p')
+    //parrafo.innerHTML='Tu mascota atacó con '+ataqueJugador +', la mascota del enemigo atacó con ' +ataqueEnemigo +' '+ resultado
+
+    //sectionMensajes.appendChild(parrafo)
+}
+function crearMensajeFinal(resultadoFinal){
+
+>>>>>>> c9e75e2f391569f24c84c383bb6e15979adb79ec
 
     let parrafo=document.createElement('p')
     parrafo.innerHTML=resultadoFinal
 
+<<<<<<< HEAD
     sectionMensajes.appendChild(parrafo)
 
     let botonFuego=document.getElementById('boton-fuego')
@@ -166,6 +226,12 @@ function crearMensajeFinal(resultadoFinal){
     let botonAgua=document.getElementById('boton-agua')
     botonAgua.disabled=true
     let botonTierra=document.getElementById('boton-tierra')
+=======
+    //sectionMensajes.appendChild(parrafo)
+
+    botonFuego.disabled=true
+    botonAgua.disabled=true
+>>>>>>> c9e75e2f391569f24c84c383bb6e15979adb79ec
     botonTierra.disabled=true
 }
 
