@@ -17,6 +17,7 @@ const sectionMensajes = document.getElementById('resulrado')
 const ataqueDelJugador = document.getElementById('ataque-del-jugador')
 const ataqueDelEnemigo = document.getElementById('ataque-del-enemigo')
 const contenedorTarjetas=document.getElementById('contenedorTarjetas')
+const contenedorAtaques = document.getElementById('contenedorAtaques')
 
 let mokepones=[]
 let ataqueJugador
@@ -26,6 +27,9 @@ let opcionDeMokepones
 let inputHipodoge
 let inputCapipepo
 let inputRatigueya
+
+let mascotaJugador
+let ataquesMokepon
 
 let vidasJugador=3
 let vidasEnemigo=3
@@ -39,7 +43,7 @@ class Mokepon{
     }
 }
 
-let hipodoge=new Mokepon('Hipodoge','./assets/ratigueya_attack.webp',5)
+let hipodoge=new Mokepon('Hipodoge','./assets/hipodoge_attack.webp',5)
 let capipepo=new Mokepon('Capipepo','./assets/capipepo_attack.webp',5)
 let ratigueya=new Mokepon('Ratigueya','./assets/ratigueya_attack.webp',5)
 
@@ -63,7 +67,7 @@ capipepo.ataques.push(
 ratigueya.ataques.push(
     {nombre:'🔥',id:'boton-fuego'},
     {nombre:'🔥',id:'boton-fuego'},
-    {nombre:'🔥',id:'boton-guego'},
+    {nombre:'🔥',id:'boton-uego'},
     {nombre:'🌊',id:'boton-agua'},
     {nombre:'🪨',id:'boton-tierra'},
 )
@@ -103,16 +107,39 @@ function selecionarMascotaJugador(){
     sectionSeleccionarAtaque.style.display='flex'
     sectionSeleccionarMascota.style.display='none'
 
-    if(inputHipodoge.checked)
+    if(inputHipodoge.checked){
         spanMascotaJugador.innerHTML=inputHipodoge.id
-    else if(inputCapipepo.checked)
+        mascotaJugador=inputHipodoge.id
+    }else if(inputCapipepo.checked){
         spanMascotaJugador.innerHTML=inputCapipepo.id
-    else if(inputRatigueya.checked)
-        spanMascotaJugador.innerHTML=inputRatigueya.id
-    else
+        mascotaJugador=inputCapipepo.id
+    }else if(inputRatigueya.checked){
+       spanMascotaJugador.innerHTML=inputRatigueya.id
+       mascotaJugador=inputRatigueya.id
+    }else{
         alert("Misigno?")
-    
+    }
+    extraerAtaques(mascotaJugador)
     seleccionarMascotaEnemigo()
+}
+
+function extraerAtaques(mascotaJugador){
+    let ataques
+    for(let i=0;i<mokepones.length;i++){
+        if(mascotaJugador === mokepones[i].nombre){
+            ataques = mokepones[i].ataques
+        }
+    }
+    mostrarAtaques(ataques)
+}
+
+function mostrarAtaques(ataques){
+    ataques.forEach((ataque) => {
+        ataquesMokepon=`
+        <button id =${ataque.id} class="boton-de-ataque">${ataque.nombre}</button>
+        `
+        contenedorAtaques.innerHTML+=ataquesMokepon
+    })
 }
 
 function seleccionarMascotaEnemigo(){
