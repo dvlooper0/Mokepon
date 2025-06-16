@@ -100,7 +100,7 @@ input:checked + label{
     align-items:center;
 }
 
-@media (max-wid: 360px){
+@media (max-width: 360px){
     .tarjetas, .tarjetas-ataques{
         flex-direction:column;
     }
