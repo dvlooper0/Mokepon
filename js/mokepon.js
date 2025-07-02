@@ -36,31 +36,42 @@ let botonFuego
 let botonAgua
 let botonTierra
 
-let botones=[]
+let botones = []
 let indexAtaqueJugador
 let indexAtaqueEnemigo
 
-let victoriasJugador=0
-let victoriasEnemigo=0
+let victoriasJugador = 0
+let victoriasEnemigo = 0
 
-let vidasJugador=3
-let vidasEnemigo=3
+let vidasJugador = 3
+let vidasEnemigo = 3
 
 let lienzo=mapa.getContext("2d")
+
+// -------------------------------------------------- DEFINICION CLASE MOKEPON
 
 class Mokepon{
     constructor(nombre, foto, vida){
         this.nombre=nombre
         this.foto=foto
         this.vida=vida
-        this.ataques=[]
+        this.ataques = []
+        this.x = 20
+        this.y = 30
+        this.ancho = 80
+        this.alto = 80
+        this.mapaFoto = new Image()
+        mapaFoto.src = foto
     }
 }
+
+// -------------------------------------------------- INICIALIZACION DE OBJETOS
 
 let hipodoge=new Mokepon('Hipodoge','./assets/hipodoge_attack.webp',5)
 let capipepo=new Mokepon('Capipepo','./assets/capipepo_attack.webp',5)
 let ratigueya=new Mokepon('Ratigueya','./assets/ratigueya_attack.webp',5)
 
+// -------------------------------------------------- ADICION DE ATAQUES A MOQUEPONES
 
 hipodoge.ataques.push(
     {nombre: '🌊',id: 'boton-agua'},
@@ -87,6 +98,8 @@ ratigueya.ataques.push(
 )
 
 mokepones.push(hipodoge,capipepo,ratigueya)
+
+// -------------------------------------------------- F INICIAR JUEGO
 
 function iniciarJuego(){
     sectionSeleccionarAtaque.style.display='none'
@@ -116,19 +129,14 @@ function iniciarJuego(){
     botonReiniciar.style.display='none'
 }
 
+// -------------------------------------------------- F SELECCION MASCOTA JUGADOR
+
 function selecionarMascotaJugador(){
 
     sectionSeleccionarMascota.style.display='none'
     //sectionSeleccionarAtaque.style.display='flex'
     sectionVerMapa.style.display='flex'
-    let imagenDeCapipepo=new Image()
-    imagenDeCapipepo.src=capipepo.foto
-    lienzo.drawImage(
-        imagenDeCapipepo,
-        20,
-        40,
-        100,
-        100)    
+        
 
     if(inputHipodoge.checked){
         spanMascotaJugador.innerHTML=inputHipodoge.id
@@ -146,6 +154,8 @@ function selecionarMascotaJugador(){
     seleccionarMascotaEnemigo()
 }
 
+// -------------------------------------------------- F EXTRAER ATQUES
+
 function extraerAtaques(mascotaJugador){
     let ataques
     for(let i=0;i<mokepones.length;i++){
@@ -155,6 +165,8 @@ function extraerAtaques(mascotaJugador){
     }
     mostrarAtaques(ataques)
 }
+
+// -------------------------------------------------- F MOSTRAR ATAQUES
 
 function mostrarAtaques(ataques){
     ataques.forEach((ataque) => {
@@ -170,6 +182,8 @@ function mostrarAtaques(ataques){
     botones=document.querySelectorAll('.BAtaque')
 
 }
+
+// -------------------------------------------------- F SECUENCIA DE ATAQUES
 
 function secuenciaAtaque(){
     botones.forEach((boton)=>{
@@ -196,6 +210,8 @@ function secuenciaAtaque(){
     
 }
 
+// -------------------------------------------------- F SELECCIONAR MASCOTA DEL ENEMIGO
+
 function seleccionarMascotaEnemigo(){
 
     let mascotaAleatorio=aleatorio(0,mokepones.length-1)
@@ -204,6 +220,8 @@ function seleccionarMascotaEnemigo(){
     ataquesMokeponEnemigo=mokepones[mascotaAleatorio].ataques
     secuenciaAtaque()
 }
+
+// -------------------------------------------------- F ATAQUE ALEATORIO DEL ENEMIGO
 
 function ataqueAleatorioEnemigo(){
     
@@ -220,16 +238,22 @@ function ataqueAleatorioEnemigo(){
     iniciarPelea()
 }
 
+// -------------------------------------------------- F INICIAR PELEA
+
 function iniciarPelea(){
     if(ataqueJugador.length===5){
         combate()
     }
 }
 
+// -------------------------------------------------- F INDEX AMBOS OPONENTES
+
 function indexAmbosOponentes(jugador,enemigo){
     indexAtaqueJugador=ataqueJugador[jugador]
     indexAtaqueEnemigo=ataqueEnemigo[enemigo]
 }
+
+// -------------------------------------------------- F COMBATE
 
 function combate(){
 
@@ -290,6 +314,8 @@ function combate(){
     revisarVictorias()
 }
 
+// -------------------------------------------------- F REVISAR VICTORIAS
+
 function revisarVictorias(){
 
     let botonReiniciar=document.getElementById('boton-reiniciar')
@@ -307,6 +333,8 @@ function revisarVictorias(){
     }
 }
 
+// -------------------------------------------------- CREAR MENSAJE
+
 function crearMensaje(resultado){
 
     let nuevoAtaqueDelJugador=document.createElement('p')
@@ -320,18 +348,44 @@ function crearMensaje(resultado){
     ataqueDelEnemigo.appendChild(nuevoAtaqueDelEnemigo)
 
 }
+
+// -------------------------------------------------- F CREAR MENSAJE FINAL
+
 function crearMensajeFinal(resultadoFinal){
 
     let parrafo=document.createElement('p')
     parrafo.innerHTML=resultadoFinal
 }
 
+// -------------------------------------------------- F REINICIAR JUEGO
+
 function reiniciarJuego(){
     location.reload()
 }
 
+// -------------------------------------------------- F ALEATORIO
+
 function aleatorio(min,max){
     return Math.floor(Math.random()*(max-min+1)+min)
+}
+
+// -------------------------------------------------- F PINTAR PERSONAJE
+
+function pintarPersonaje(){
+    lienzo.crearRect(0, 0, mapa.Width, mapa.height)
+    lienzo.drawImage(
+        capipepo.mapaFoto,
+        capipepo.x,
+        capipepo.y,
+        capipepo.ancho,
+        capipepo.alto)
+}
+
+// -------------------------------------------------- F MOVER CAPIPEPO
+
+function moverCapipepo(){
+    capipepo.x = capipepo.x + 5
+    pintarPersonaje()
 }
 
 window.addEventListener('load',iniciarJuego) 
