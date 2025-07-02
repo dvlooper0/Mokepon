@@ -61,7 +61,7 @@ class Mokepon{
         this.ancho = 80
         this.alto = 80
         this.mapaFoto = new Image()
-        mapaFoto.src = foto
+        this.mapaFoto.src = foto
     }
 }
 
