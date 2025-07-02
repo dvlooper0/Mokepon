@@ -372,13 +372,14 @@ function aleatorio(min,max){
 // -------------------------------------------------- F PINTAR PERSONAJE
 
 function pintarPersonaje(){
-    lienzo.crearRect(0, 0, mapa.Width, mapa.height)
+    lienzo.clearRect(0, 0, mapa.width, mapa.height)
     lienzo.drawImage(
         capipepo.mapaFoto,
         capipepo.x,
         capipepo.y,
         capipepo.ancho,
-        capipepo.alto)
+        capipepo.alto
+    )
 }
 
 // -------------------------------------------------- F MOVER CAPIPEPO
