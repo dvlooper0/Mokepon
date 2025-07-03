@@ -48,6 +48,8 @@ let vidasEnemigo = 3
 
 let lienzo=mapa.getContext("2d")
 let intervalo
+let mapaBackground = new Image()
+mapaBackground.src = './assets/mokemap.webp'
 
 // -------------------------------------------------- DEFINICION CLASE MOKEPON
 
@@ -358,13 +360,22 @@ function aleatorio(min,max){
     return Math.floor(Math.random()*(max-min+1)+min)
 }
 
-// -------------------------------------------------- F PINTAR PERSONAJE
-function pintarPersonaje(){
+// -------------------------------------------------- F PINTAR CANVAS
+function pintarCanvas(){
 
     capipepo.x = capipepo.x + capipepo.velocidadX
     capipepo.y = capipepo.y + capipepo.velocidadY
 
     lienzo.clearRect(0, 0, mapa.width, mapa.height)
+
+    lienzo.drawImage(
+        mapaBackground,
+        0,
+        0,
+        mapa.width,
+        mapa.height
+    )
+
     lienzo.drawImage(
         capipepo.mapaFoto,
         capipepo.x,
@@ -397,6 +408,7 @@ function detenerMovimiento(){
     capipepo.velocidadY = 0
 }
 
+// -------------------------------------------------- F PRESION DE TECLAS
 function sePresionoUnaTecla(event){
 
     switch(event.key){
@@ -423,8 +435,11 @@ function sePresionoUnaTecla(event){
 
 }
 
+// -------------------------------------------------- F INICIAR MAPA
 function iniciarMapa(){
-    intervalo = setInterval(pintarPersonaje,50)
+    mapa.width = 320
+    mapa.height = 240
+    intervalo = setInterval(pintarCanvas,50)
 
     window.addEventListener('keydown', sePresionoUnaTecla)
     window.addEventListener('keyup', detenerMovimiento)
