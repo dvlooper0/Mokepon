@@ -141,7 +141,7 @@ capipepoEnemigo.ataques.push(
 ratigueya.ataques.push(
     {nombre:'🔥',id:'boton-fuego'},
     {nombre:'🔥',id:'boton-fuego'},
-    {nombre:'🔥',id:'boton-uego'},
+    {nombre:'🔥',id:'boton-fuego'},
     {nombre:'🌊',id:'boton-agua'},
     {nombre:'🪨',id:'boton-tierra'},
 )
@@ -182,7 +182,25 @@ function iniciarJuego(){
     botonMascotaJugador.addEventListener('click',selecionarMascotaJugador)
 
     botonReiniciar.addEventListener('click',reiniciarJuego)
+
+    unirseAlJuego()
+
     botonReiniciar.style.display='none'
+}
+
+// -------------------------------------------------- F UNIRSE AL JUEGO
+function unirseAlJuego(){
+
+    fetch("http://localhost:7000/unirse")
+    .then(function(res){
+        //console.log(res)
+        if(res.ok){
+            res.text()
+                .then(function(respuesta){
+                    console.log(respuesta)
+                })
+        }
+    })
 }
 
 // -------------------------------------------------- F SELECCION MASCOTA JUGADOR
