@@ -17,6 +17,7 @@
   "homepage": "https://github.com/dvlooper0/Mokepon#readme",
   "description": "",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^5.1.0"
   }
 }
