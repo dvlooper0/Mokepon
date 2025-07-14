@@ -305,6 +305,25 @@ function enviarAtaques(){
         })
     })
 
+    intervalo = setInterval(obtenerAtaques,50)
+
+}
+
+// -------------------------------------------------- F OBTENER ATAQUES
+function obtenerAtaques(){
+
+    fetch(`http://localhost:7000/mokepon/${enemigoId}/ataques`)
+        .then(function (res){
+            if(res.ok){
+                res.json()
+                .then(function ({ataques}){
+                    if(ataques.length === 5){
+                        ataqueEnemigo = ataques
+                        combate()
+                    }
+                })
+            }
+        })
 }
 
 // -------------------------------------------------- F SELECCIONAR MASCOTA DEL ENEMIGO
@@ -348,6 +367,8 @@ function indexAmbosOponentes(jugador,enemigo){
 
 // -------------------------------------------------- F COMBATE
 function combate(){
+
+    clearInterval(intervalo)
 
     for(let index=0;index<ataqueJugador.length;index++){
         if(ataqueJugador[index]===ataqueEnemigo[index]){
@@ -444,6 +465,7 @@ function crearMensajeFinal(resultadoFinal){
 
     let parrafo=document.createElement('p')
     parrafo.innerHTML=resultadoFinal
+    sectionMensajes.appendChild(parrafo)
 }
 
 // -------------------------------------------------- F REINICIAR JUEGO
