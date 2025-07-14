@@ -200,7 +200,7 @@ function unirseAlJuego(){
 // -------------------------------------------------- F SELECCION MASCOTA JUGADOR
 function selecionarMascotaJugador(){
 
-    sectionSeleccionarMascota.style.display='none'
+    //sectionSeleccionarMascota.style.display='none'
 
     if(inputHipodoge.checked){
         spanMascotaJugador.innerHTML=inputHipodoge.id
@@ -213,7 +213,10 @@ function selecionarMascotaJugador(){
        mascotaJugador=inputRatigueya.id
     }else{
         alert("Misigno?")
+        return
     }
+
+    sectionSeleccionarMascota.style.display='none'
 
     seleccionarMokepon(mascotaJugador)
 
